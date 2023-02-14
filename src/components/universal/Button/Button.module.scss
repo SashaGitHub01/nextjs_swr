@@ -1,0 +1,40 @@
+
+
+.button {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  gap: 10px;
+  justify-content: center;
+  transition: 0.3s ease-out;
+
+  &.primary {
+    background-color: $black;
+    color: $white;
+    padding: 12px 33px;
+
+    &:focus {
+      outline: solid $gray3;
+    }
+  }
+
+  &.secondary {
+    background-color: $white;
+    color: $text_primary;
+    padding: 7px 33px;
+    border: 1px solid $gray1;
+
+    &:hover,
+    &:focus {
+      border-color: $gray3;
+    }
+  }
+
+  &:disabled {
+    color: $background_secondary;
+    background-color: $gray1;
+    pointer-events: none;
+  }
+
+  .icon {}
+}

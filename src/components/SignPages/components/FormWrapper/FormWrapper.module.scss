@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+
+  .box {
+    background-color: $background_primary;
+    border-radius: 5px;
+    border: 1px solid $background_secondary;
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+
+    .title {}
+
+    .form {
+      padding: 25px 0;
+    }
+  }
+}

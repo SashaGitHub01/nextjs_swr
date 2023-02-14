@@ -1,0 +1,21 @@
+.header {
+  background-color: $white;
+  padding: 15px 29.5px 15px 20px;
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo_row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .logo {
+        cursor: pointer;
+      }
+
+    }
+  }
+}

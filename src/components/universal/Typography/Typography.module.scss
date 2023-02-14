@@ -1,0 +1,21 @@
+.typo {
+  &.title {
+    @include typo(inherit, 500, 30px, 140%)
+  }
+
+  &.subtitle {
+    @include typo(inherit, 400, 18px, 140%)
+  }
+
+  &.btn {
+    @include typo(inherit, 500, 16px, 160%)
+  }
+
+  &.p1 {
+    @include typo(inherit, 400, 16px, 160%)
+  }
+
+  &.p2 {
+    @include typo(inherit, 400, 12px, 160%)
+  }
+}

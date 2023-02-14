@@ -1,0 +1,51 @@
+.input {
+  display: flex;
+  align-items: stretch;
+  gap: 11px;
+  background-color: $background_primary;
+  border-radius: 5px;
+  border: 1px solid $gray1;
+  padding: 12px 20px;
+  transition: 0.3 ease-out;
+
+  &.disabled {
+    background-color: $background_secondary;
+    color: $gray3;
+    pointer-events: none;
+  }
+
+  &:hover,
+  &:focus-within {
+    border-color: $gray3;
+  }
+
+  .field_cont {
+    flex-grow: 1;
+    display: flex;
+    gap: 11px;
+
+    .field {
+      width: 100%;
+      @include typo($text_primary, 400, 16px, 160%);
+
+      &::placeholder {
+        color: $gray3;
+      }
+    }
+  }
+
+  &.error {
+    border-color: $red;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+
+    &.icon_start {}
+
+    &.icon_end {
+      cursor: pointer;
+    }
+  }
+}

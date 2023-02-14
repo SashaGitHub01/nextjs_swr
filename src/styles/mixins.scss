@@ -1,0 +1,6 @@
+@mixin typo ($color: $text_primary, $fw: 400, $fz: 16px, $lh: 160%) {
+  font-weight: $fw;
+  font-size: $fz;
+  line-height: $lh;
+  color: $color;
+}

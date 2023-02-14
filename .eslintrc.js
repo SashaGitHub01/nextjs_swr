@@ -28,6 +28,14 @@ module.exports = {
     "react/no-unstable-nested-components": ["off"],
     "react/self-closing-comp": ["off"],
     "react/jsx-filename-extension": ["off"],
+    "prettier/prettier": ["off"],
+    "react/jsx-curly-brace-presence": ["off"],
+    "import/extensions": ["off"],
+    "react/require-default-props": ["off"],
+    "react/button-has-type": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
   },
   settings: {
     "import/resolver": {
