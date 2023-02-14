@@ -4,7 +4,7 @@ import React, { InputHTMLAttributes, useMemo, useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@src/assets/icons";
 import s from "./Input.module.scss";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   iconStart?: React.ReactNode;
   iconEnd?: React.ReactNode;
   error?: boolean;
@@ -26,10 +26,10 @@ const Input: React.FC<InputProps> = ({
   const [currentIconEnd, currentType] = useMemo(() => {
     if (type === "password") {
       if (isVisible) {
-        return [<EyeSlashIcon />, 'text'];
+        return [<EyeSlashIcon />, "text"];
       }
 
-      return [<EyeIcon />, 'password'];
+      return [<EyeIcon />, "password"];
     }
 
     return [iconEnd, type];
