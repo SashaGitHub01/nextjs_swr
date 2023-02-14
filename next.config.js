@@ -19,7 +19,7 @@ const nextConfig = {
       test: /\.module\.s(a|c)ss$/,
       loader: "sass-loader",
       options: {
-        additionalData: `@import "styles/variables.scss";`,
+        additionalData: `@import "src/styles/variables.scss";`,
         sassOptions: {
           includePaths: ["src/styles"],
         },
@@ -27,7 +27,7 @@ const nextConfig = {
     });
 
     if (lastLoader) {
-      lastLoader.options.additionalData = `@import "styles/variables.scss;"`;
+      lastLoader.options.additionalData = `@import "src/styles/variables.scss;"`;
     }
 
     config.resolve.alias = {
