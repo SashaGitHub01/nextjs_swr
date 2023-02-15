@@ -6,7 +6,7 @@ import RegisterForm from "./RegisterForm/RegisterForm";
 
 const Register: React.FC = () => {
   return (
-    <Layout footer={<Footer isLogin />}>
+    <Layout footer={<Footer />}>
       <FormWrapper title={"Регистрация в Yoldi Agency"}>
         <RegisterForm />
       </FormWrapper>

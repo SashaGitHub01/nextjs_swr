@@ -1,0 +1,22 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid $gray2;
+
+  &:first-child {
+    border-top: 1px solid $gray2;
+  }
+
+  .left_row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-grow: 1;
+  }
+
+  .email {
+    color: $gray3;
+  }
+}
