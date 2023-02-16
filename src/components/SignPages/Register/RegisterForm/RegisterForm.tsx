@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@src/components/universal/Button/Button";
-import FormikInput from "@src/components/universal/FormikInput/FormikInput";
+import FormikInput from "@src/components/universal/Formik/FormikInput/FormikInput";
 import { Formik } from "formik";
 import { IRegisterDto } from "@src/types/dtos/Register.dto";
 import * as Yup from "yup";

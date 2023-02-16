@@ -4,3 +4,22 @@
   line-height: $lh;
   color: $color;
 }
+
+@mixin field {
+  background-color: $background_primary;
+  border-radius: 5px;
+  border: 1px solid $gray1;
+  transition: border-color 0.3s ease-out;
+  @include typo($text_primary, 400, 16px, 160%);
+
+  &:disabled {
+    background-color: $background_secondary;
+    color: $gray3;
+    pointer-events: none;
+  }
+
+  &:hover,
+  &:focus-within {
+    border-color: $gray3;
+  }
+}

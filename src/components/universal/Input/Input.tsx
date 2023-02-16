@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-key */
 import clsx from "clsx";
 import React, { InputHTMLAttributes, useMemo, useState } from "react";
@@ -9,7 +10,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   iconStart?: React.ReactNode;
   iconEnd?: React.ReactNode;
   error?: boolean;
-  label?: React.ReactNode
+  label?: React.ReactNode;
+  startText?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,6 +24,7 @@ const Input: React.FC<InputProps> = ({
   disabled,
   type,
   label,
+  startText,
   ...props
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -50,24 +53,29 @@ const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <>
+    <div className={clsx(s.wrapper, className)}>
       {!!label && (
         <Typography className={s.label} variant="button_text">
           {label}
         </Typography>
       )}
       <div className={getClasses()}>
+        {!!startText && (
+          <Typography variant="p1" className={s.prefix}>
+            {startText}
+          </Typography>
+        )}
         <div className={s.field_cont}>
           {!!iconStart && <div className={clsx(s.icon, s.icon_start)}>{iconStart}</div>}
           <input type={currentType} className={s.field} {...props} />
+          {!!currentIconEnd && (
+            <div onClick={toggleVisibility} className={clsx(s.icon, s.icon_end)}>
+              {currentIconEnd}
+            </div>
+          )}
         </div>
-        {!!currentIconEnd && (
-          <div onClick={toggleVisibility} className={clsx(s.icon, s.icon_end)}>
-            {currentIconEnd}
-          </div>
-        )}
       </div>
-    </>
+    </div>
   );
 };
 

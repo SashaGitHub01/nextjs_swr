@@ -39,6 +39,8 @@ module.exports = {
     "no-unused-vars": ["off"],
     "no-extra-boolean-cast": ["off"],
     "react/prop-types": ["off"],
+    "no-else-return": ["off"],
+    "consistent-return": ["off"],
   },
   settings: {
     "import/resolver": {

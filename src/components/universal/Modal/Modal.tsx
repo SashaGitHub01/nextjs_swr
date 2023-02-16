@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React, { PropsWithChildren, useLayoutEffect } from "react";
 import ReactModal from "react-modal";
+import Typography from "../Typography/Typography";
 import s from "./Modal.module.scss";
 
 interface ModalProps {
@@ -9,6 +10,7 @@ interface ModalProps {
   closeOnOverlayClick?: boolean;
   className?: string;
   duration?: number;
+  title?: string;
 }
 
 const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
@@ -18,6 +20,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
   onClose,
   duration = 400,
   closeOnOverlayClick = true,
+  title,
 }) => {
   useLayoutEffect(() => {
     if (open) {
@@ -42,7 +45,14 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
       ariaHideApp={false}
       style={{ overlay: { transitionDuration: `${duration}ms` } }}
     >
-      {children}
+      <div className={s.wrapper}>
+        {!!title && (
+          <Typography variant="title" className={s.title}>
+            {title}
+          </Typography>
+        )}
+        {children}
+      </div>
     </ReactModal>
   );
 };

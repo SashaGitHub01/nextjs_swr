@@ -1,55 +1,53 @@
-.label {
-  color: $gray3;
-}
-
-.input {
-  display: flex;
-  align-items: stretch;
-  gap: 11px;
-  background-color: $background_primary;
-  border-radius: 5px;
-  border: 1px solid $gray1;
-  padding: 12px 20px;
-  transition: 0.3 ease-out;
-
-  &.disabled {
-    background-color: $background_secondary;
+.wrapper {
+  .label {
     color: $gray3;
-    pointer-events: none;
+    padding-bottom: 5px;
   }
 
-  &:hover,
-  &:focus-within {
-    border-color: $gray3;
-  }
-
-  .field_cont {
-    flex-grow: 1;
+  .input {
     display: flex;
-    gap: 11px;
+    align-items: stretch;
+    @include field;
 
-    .field {
-      width: 100%;
-      @include typo($text_primary, 400, 16px, 160%);
+    .field_cont {
+      flex-grow: 1;
+      display: flex;
+      padding: 12px 20px;
 
-      &::placeholder {
-        color: $gray3;
+      .field {
+        width: 100%;
+
+        &::placeholder {
+          color: $gray3;
+        }
       }
     }
-  }
 
-  &.error {
-    border-color: $red;
-  }
+    &.error {
+      border-color: $red;
+    }
 
-  .icon {
-    display: flex;
-    align-items: center;
+    .prefix {
+      background-color: $background_secondary;
+      padding: 12px 20px;
+      color: $gray3;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-right: 1px solid $gray1;
+    }
 
-    &.icon_start {}
+    .icon {
+      display: flex;
+      align-items: center;
 
-    &.icon_end {
-      cursor: pointer;
+      &.icon_start {
+        margin-right: 11px;
+      }
+
+      &.icon_end {
+        margin-left: 11px;
+        cursor: pointer;
+      }
     }
   }
 }

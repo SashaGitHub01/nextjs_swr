@@ -33,7 +33,13 @@
     overflow: hidden;
     z-index: 1;
     max-height: 90vh;
-    margin-left: calc(100vw - 100%);
-    padding: 30px;
+
+    .wrapper {
+      padding: 30px;
+
+      .title {
+        margin-bottom: 25px;
+      }
+    }
   }
 }

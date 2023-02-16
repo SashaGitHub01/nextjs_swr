@@ -17,15 +17,17 @@ const UserItem: React.FC<PropsWithChildren<UserItemProps>> = ({
 }) => {
   return (
     <div className={s.item} key={slug}>
-      <div className={s.left_row}>
-        <Avatar name={name} src={image?.url} />
+      <Avatar name={name} src={image?.url} className={s.avatar} />
+      <div className={s.row}>
         <Link href={`/users${slug}`}>
-          <Typography variant="button_text">{name}</Typography>
+          <Typography className={s.name} variant="button_text">
+            {name}
+          </Typography>
         </Link>
+        <Typography variant="p1" className={s.email}>
+          {email}
+        </Typography>
       </div>
-      <Typography variant="p1" className={s.email}>
-        {email}
-      </Typography>
     </div>
   );
 };

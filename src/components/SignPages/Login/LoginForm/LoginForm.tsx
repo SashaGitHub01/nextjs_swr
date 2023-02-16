@@ -3,7 +3,7 @@ import Button from "@src/components/universal/Button/Button";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { ILoginDto } from "@src/types/dtos/Login.dto";
-import FormikInput from "@src/components/universal/FormikInput/FormikInput";
+import FormikInput from "@src/components/universal/Formik/FormikInput/FormikInput";
 import s from "./LoginForm.module.scss";
 
 const LoginForm: React.FC = () => {

@@ -20,7 +20,7 @@ const User: React.FC<PropsWithChildren<UserProps>> = () => {
 
   return (
     <Layout>
-      <Modal onClose={handleClose} open={isOpen}>
+      <Modal title="Редактировать профиль" onClose={handleClose} open={isOpen}>
         <EditForm />
       </Modal>
       <UserInfo handleOpen={handleOpen} />
