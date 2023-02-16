@@ -1,0 +1,39 @@
+.overlay {
+  line-height: normal;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+  opacity: 0;
+
+  &[class*="--after-open"] {
+    opacity: 1;
+  }
+
+  &[class*="--before-close"] {
+    opacity: 0;
+  }
+
+  .modal {
+    border: 1px solid $gray2;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    background-color: $white;
+    overflow: hidden;
+    z-index: 1;
+    max-height: 90vh;
+    margin-left: calc(100vw - 100%);
+    padding: 30px;
+  }
+}

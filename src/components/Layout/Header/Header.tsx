@@ -3,6 +3,7 @@ import React, { PropsWithChildren } from "react";
 import logo from "@assets/images/logo.png";
 import Typography from "@src/components/universal/Typography/Typography";
 import Button from "@src/components/universal/Button/Button";
+import Link from "next/link";
 import s from "./Header.module.scss";
 
 interface HeaderProps {}
@@ -12,9 +13,9 @@ const Header: React.FC<PropsWithChildren<HeaderProps>> = () => {
     <header className={s.header}>
       <div className={s.row}>
         <div className={s.logo_row}>
-          <div className={s.logo}>
+          <Link href={'/'} className={s.logo}>
             <Image width={80} height={50} alt="logo" src={logo.src} />
-          </div>
+          </Link>
           <Typography variant="p1">
             Разрабатываем и запускаем
             <br />

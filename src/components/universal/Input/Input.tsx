@@ -3,11 +3,13 @@ import clsx from "clsx";
 import React, { InputHTMLAttributes, useMemo, useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@src/assets/icons";
 import s from "./Input.module.scss";
+import Typography from "../Typography/Typography";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   iconStart?: React.ReactNode;
   iconEnd?: React.ReactNode;
   error?: boolean;
+  label?: React.ReactNode
 }
 
 const Input: React.FC<InputProps> = ({
@@ -19,6 +21,7 @@ const Input: React.FC<InputProps> = ({
   value,
   disabled,
   type,
+  label,
   ...props
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -47,17 +50,24 @@ const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <div className={getClasses()}>
-      <div className={s.field_cont}>
-        {!!iconStart && <div className={clsx(s.icon, s.icon_start)}>{iconStart}</div>}
-        <input type={currentType} className={s.field} {...props} />
-      </div>
-      {!!currentIconEnd && (
-        <div onClick={toggleVisibility} className={clsx(s.icon, s.icon_end)}>
-          {currentIconEnd}
-        </div>
+    <>
+      {!!label && (
+        <Typography className={s.label} variant="button_text">
+          {label}
+        </Typography>
       )}
-    </div>
+      <div className={getClasses()}>
+        <div className={s.field_cont}>
+          {!!iconStart && <div className={clsx(s.icon, s.icon_start)}>{iconStart}</div>}
+          <input type={currentType} className={s.field} {...props} />
+        </div>
+        {!!currentIconEnd && (
+          <div onClick={toggleVisibility} className={clsx(s.icon, s.icon_end)}>
+            {currentIconEnd}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

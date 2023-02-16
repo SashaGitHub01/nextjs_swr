@@ -5,6 +5,7 @@
   margin: 0;
   border: 0;
 }
+
 *,
 *:before,
 *:after {
@@ -17,6 +18,7 @@
 :active {
   outline: none;
 }
+
 a:focus,
 a:active {
   outline: none;
@@ -37,8 +39,7 @@ body {
     Helvetica Neue, sans-serif;
 }
 
-body {
-}
+body {}
 
 pre {
   font-family: inherit;
@@ -54,9 +55,11 @@ textarea {
 input::-ms-clear {
   display: none;
 }
+
 button {
   cursor: pointer;
 }
+
 button::-moz-focus-inner {
   padding: 0;
   border: 0;
@@ -70,11 +73,13 @@ a,
 a:visited {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: none;
 }
-ul li {
-}
+
+ul li {}
+
 img {
   max-width: 100%;
   display: block;

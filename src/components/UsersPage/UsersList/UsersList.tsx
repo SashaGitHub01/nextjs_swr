@@ -12,7 +12,7 @@ const users: IUser[] = [
     description: "hey",
     image: {
       id: "string",
-      url: "https://kartinkin.net/uploads/posts/2022-03/1646961333_52-kartinkin-net-p-kartinki-dlya-profilya-stim-57.jpg",
+      url: "https://static.fotor.com/app/features/img/aiimage/scenes/a%20realistic%20fox%20in%20the%20lake%20generated%20by%20ai%20image%20creator.png",
       width: "string",
       height: "string",
     },
@@ -25,7 +25,7 @@ const users: IUser[] = [
     description: "hey",
     image: {
       id: "string",
-      url: "https://kartinkin.net/uploads/posts/2022-03/1646961333_52-kartinkin-net-p-kartinki-dlya-profilya-stim-57.jpg",
+      url: "https://static.fotor.com/app/features/img/aiimage/scenes/a%20realistic%20fox%20in%20the%20lake%20generated%20by%20ai%20image%20creator.png",
       width: "string",
       height: "string",
     },
@@ -45,7 +45,7 @@ const users: IUser[] = [
     description: "hey",
     image: {
       id: "string",
-      url: "https://kartinkin.net/uploads/posts/2022-03/1646961333_52-kartinkin-net-p-kartinki-dlya-profilya-stim-57.jpg",
+      url: "https://static.fotor.com/app/features/img/aiimage/scenes/a%20realistic%20fox%20in%20the%20lake%20generated%20by%20ai%20image%20creator.png",
       width: "string",
       height: "string",
     },

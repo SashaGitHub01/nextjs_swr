@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 export class LocalStorageHelper {
   static getApiKey = () => {
     return localStorage.getItem("apikey");
