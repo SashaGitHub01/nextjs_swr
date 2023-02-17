@@ -35,13 +35,18 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
   }, [open]);
 
   return (
+    <div className={s.overlay}>
+      <div className={clsx(s.modal, className)}>
+
+      </div>
+    </div>
     <ReactModal
       isOpen={open}
       shouldCloseOnOverlayClick={closeOnOverlayClick}
       closeTimeoutMS={duration}
       overlayClassName={s.overlay}
       onRequestClose={onClose}
-      className={clsx(s.modal, className)}
+      className={}
       ariaHideApp={false}
       style={{ overlay: { transitionDuration: `${duration}ms` } }}
     >

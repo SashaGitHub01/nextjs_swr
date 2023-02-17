@@ -17,6 +17,12 @@
         cursor: pointer;
       }
 
+      @media screen and (max-width: $mobile_768){
+        .text {
+          display: none;
+        }
+      }
+
     }
   }
 }

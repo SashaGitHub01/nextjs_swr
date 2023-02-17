@@ -19,13 +19,20 @@ const UserInfo: React.FC<PropsWithChildren<UserInfoProps>> = React.memo(({ handl
       <Container>
         <Avatar editable className={s.avatar} name="Namer" variant="big" />
         <div className={s.row}>
-          <div className={s.name}>
-            <Typography variant="title" as={"h1"}>
-              Namemee mameemrrrrrrrrrrrrrrrrrrefweeeeewrmameemrrrrrrrrrrrrrrrrrrefweeeeewr
-            </Typography>
-            <Typography className={s.mail} variant="p1">
-              Namemeemameemrrrrrr@mr.ru
-            </Typography>
+          <div className={s.info}>
+            <div className={s.info_col}>
+              <Typography variant="title" as={"h1"}>
+                Namemee mameemrrrrrrrrrrrrrrrrrrefweeeeewrmameemrrrrrrrrrrrrrrrrrrefweeeeewr
+              </Typography>
+              <Typography className={s.mail} variant="p1">
+                Namemeemameemrrrrrr@mr.ru
+              </Typography>
+              <span className={s.btn_mob}>
+                <Button iconStart={<EditIcon />} variant="secondary" onClick={handleOpen}>
+                  Редактировать
+                </Button>
+              </span>
+            </div>
             <div className={s.description}>
               <Typography variant="p1">
                 <pre>
@@ -42,11 +49,14 @@ const UserInfo: React.FC<PropsWithChildren<UserInfoProps>> = React.memo(({ handl
               </Button>
             </div>
           </div>
-          <div className={s.btn}>
-            <Button iconStart={<EditIcon />} variant="secondary" onClick={handleOpen}>
-              Редактировать
-            </Button>
-          </div>
+          <Button
+            className={s.btn}
+            iconStart={<EditIcon />}
+            variant="secondary"
+            onClick={handleOpen}
+          >
+            Редактировать
+          </Button>
         </div>
       </Container>
     </div>

@@ -16,7 +16,7 @@ const Header: React.FC<PropsWithChildren<HeaderProps>> = () => {
           <Link href={'/'} className={s.logo}>
             <Image width={80} height={50} alt="logo" src={logo.src} />
           </Link>
-          <Typography variant="p1">
+          <Typography as={'p'} className={s.text} variant="p1">
             Разрабатываем и запускаем
             <br />
             сложные веб проекты

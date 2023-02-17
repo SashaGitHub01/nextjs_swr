@@ -12,7 +12,6 @@ const UserItem: React.FC<PropsWithChildren<UserItemProps>> = ({
   name,
   email,
   slug,
-  description,
   image,
 }) => {
   return (
@@ -25,7 +24,7 @@ const UserItem: React.FC<PropsWithChildren<UserItemProps>> = ({
           </Typography>
         </Link>
         <Typography variant="p1" className={s.email}>
-          {email}
+          {'annadearmas1988@gmail.com'}
         </Typography>
       </div>
     </div>

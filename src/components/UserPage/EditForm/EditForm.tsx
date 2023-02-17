@@ -19,14 +19,18 @@ const EditForm: React.FC<PropsWithChildren<EditFormProps>> = () => {
           <form onSubmit={handleSubmit} className={s.form}>
             <FormikInput label="Имя" name="name" />
             <FormikInput startText="example.com/" label="Адрес профиля" name="slug" />
-            <FormikTextarea minRows={3} label="Описание" name="description" />
+            <FormikTextarea minRows={3} maxRows={8} label="Описание" name="description" />
             <div className={s.row}>
-              <Button type="button" variant="secondary">
-                Отмена
-              </Button>
-              <Button type="submit" variant="primary">
-                Сохранить
-              </Button>
+              <div>
+                <Button type="button" variant="secondary">
+                  Отмена
+                </Button>
+              </div>
+              <div>
+                <Button type="submit" variant="primary">
+                  Сохранить
+                </Button>
+              </div>
             </div>
           </form>
         );

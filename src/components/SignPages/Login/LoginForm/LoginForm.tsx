@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { ILoginDto } from "@src/types/dtos/Login.dto";
 import FormikInput from "@src/components/universal/Formik/FormikInput/FormikInput";
+import { MailIcon, PassIcon } from "@src/assets/icons";
 import s from "./LoginForm.module.scss";
 
 const LoginForm: React.FC = () => {
@@ -27,8 +28,8 @@ const LoginForm: React.FC = () => {
       {({ handleSubmit, dirty }) => {
         return (
           <form className={s.col} onSubmit={handleSubmit}>
-            <FormikInput placeholder="E-mail" name="email" type="email" />
-            <FormikInput placeholder="Пароль" name="password" type="password" />
+            <FormikInput iconStart={<MailIcon />} placeholder="E-mail" name="email" type="email" />
+            <FormikInput iconStart={<PassIcon />} placeholder="Пароль" name="password" type="password" />
             <Button type="submit" disabled={!dirty}>
               Войти
             </Button>

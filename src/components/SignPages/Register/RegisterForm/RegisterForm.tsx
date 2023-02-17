@@ -4,6 +4,7 @@ import FormikInput from "@src/components/universal/Formik/FormikInput/FormikInpu
 import { Formik } from "formik";
 import { IRegisterDto } from "@src/types/dtos/Register.dto";
 import * as Yup from "yup";
+import { MailIcon, PassIcon, UserIcon } from "@src/assets/icons";
 import s from "./RegisterForm.module.scss";
 
 const RegisterForm: React.FC = () => {
@@ -28,9 +29,14 @@ const RegisterForm: React.FC = () => {
       {({ handleSubmit, dirty }) => {
         return (
           <form className={s.col} onSubmit={handleSubmit}>
-            <FormikInput name="name" placeholder="Имя" type="text" />
-            <FormikInput name="email" placeholder="E-mail" type="text" />
-            <FormikInput name="password" placeholder="Пароль" type="password" />
+            <FormikInput iconStart={<UserIcon />} name="name" placeholder="Имя" type="text" />
+            <FormikInput iconStart={<MailIcon />} name="email" placeholder="E-mail" type="text" />
+            <FormikInput
+              iconStart={<PassIcon />}
+              name="password"
+              placeholder="Пароль"
+              type="password"
+            />
             <Button type="submit" disabled={!dirty}>
               Создать аккаунт
             </Button>

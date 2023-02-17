@@ -12,10 +12,15 @@
     width: 100%;
     padding: 30px;
 
-    .title {}
-
     .form {
       padding: 25px 0;
+    }
+  }
+
+  @media screen and (max-width: $mobile_375) {
+    align-items: stretch;
+    .box {
+      max-width: 100%;
     }
   }
 }
