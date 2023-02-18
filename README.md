@@ -1,5 +1,8 @@
 # Test
 
+**Стек технологий:** Next.js, TypeScript, swr.  
+ 
+
 - /login - вход;
 - /register - регистрация;
 - /users - список пользователей;
