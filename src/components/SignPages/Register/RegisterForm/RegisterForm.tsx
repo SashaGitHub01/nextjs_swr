@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import { IRegisterDto } from "@src/types/dtos/Register.dto";
 import * as Yup from "yup";
 import { MailIcon, PassIcon, UserIcon } from "@src/assets/icons";
+import { MESSAGES } from "@src/constants/messages";
 import s from "./RegisterForm.module.scss";
 
 const RegisterForm: React.FC = () => {
@@ -15,9 +16,9 @@ const RegisterForm: React.FC = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().min(1).trim().required(),
-    email: Yup.string().email().required(),
-    password: Yup.string().min(1).trim().required(),
+    name: Yup.string().min(2, MESSAGES.minLength(2)).trim().required(MESSAGES.required),
+    email: Yup.string().email(MESSAGES.email).required(MESSAGES.required),
+    password: Yup.string().min(3, MESSAGES.minLength(3)).trim().required(MESSAGES.required),
   });
 
   const onSubmit = (values: IRegisterDto) => {

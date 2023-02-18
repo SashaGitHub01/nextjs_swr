@@ -1,42 +1,24 @@
 import React, { useEffect } from "react";
 
-type UseClickOutsideType = (el: HTMLElement, event: keyof GlobalEventHandlersEventMap, ) => void
+type TargetValue<T> = T | undefined | null;
+type TargetElement<T extends Element = Element> = TargetValue<T>;
 
-// eslint-disable-next-line default-param-last
-export const useClickOutside: UseClickOutsideType = (el, onClickOutside, eventType = "click") => {
+export function useClickOutside<E extends Event = Event, T extends TargetElement = Element>(
+  element: T,
+  onClickOutside: (e: E) => void,
+  eventType: keyof GlobalEventHandlersEventMap = "click",
+) {
+  const handleClickOutside = (event: DocumentEventMap[typeof eventType]) => {
+    if (element && !element.contains(event.target as Node)) {
+      onClickOutside(event as any);
+    }
+  };
+
   useEffect(() => {
-    const handleClickOutside = (event: Event) => {
-      if(ignore === true) return;
-      if (ignore?.length > 0) {
-        const isIgnore = ignore
-          .map((element) => {
-            return !!element && element.contains(event.target);
-          })
-          .includes(true);
-
-        if (isIgnore) return;
-      }
-
-      if (Array.isArray(el)) {
-        const isTrue = el.reduce((prev, element) => {
-          if (!!prev && !element) {
-            return true;
-          }
-          return !!prev && element && !element.contains(event.target);
-        }, true);
-
-        if (isTrue) {
-          onClickOutside(event);
-        }
-      } else if (el && !el.contains(event.target)) {
-        onClickOutside(event);
-      }
-    };
-
     document.addEventListener(eventType, handleClickOutside, true);
 
     return () => {
       document.removeEventListener(eventType, handleClickOutside, true);
     };
-  }, [el, onClickOutside, ignore]);
-};
+  }, [element, onClickOutside]);
+}

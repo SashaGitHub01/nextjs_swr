@@ -2,6 +2,7 @@
   background-color: $white;
   padding: 15px 29.5px 15px 20px;
   border-bottom: 1px solid $gray2;
+  height: $header_height;
 
   .row {
     display: flex;
@@ -16,13 +17,18 @@
       .logo {
         cursor: pointer;
       }
+    }
+  }
 
-      @media screen and (max-width: $mobile_768){
-        .text {
-          display: none;
-        }
-      }
+  @media screen and (max-width: $mobile_768) {
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: sticky;
+    z-index: 1000;
 
+    .text {
+      display: none;
     }
   }
 }

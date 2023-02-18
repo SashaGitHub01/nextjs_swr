@@ -1,13 +1,21 @@
+import { useClickOutside } from "@src/hooks/useClickOutside";
 import clsx from "clsx";
-import React, { PropsWithChildren, useLayoutEffect } from "react";
-import ReactModal from "react-modal";
+import React, { PropsWithChildren, useLayoutEffect, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import Typography from "../Typography/Typography";
 import s from "./Modal.module.scss";
+
+const TRANSITION_CLASSNAMES = {
+  enter: s.enter,
+  enterActive: s.enterActive,
+  enterDone: s.enterDone,
+  exit: s.exit,
+  exitActive: s.exitActive,
+};
 
 interface ModalProps {
   open: boolean;
   onClose: () => void;
-  closeOnOverlayClick?: boolean;
   className?: string;
   duration?: number;
   title?: string;
@@ -18,10 +26,11 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
   children,
   open,
   onClose,
-  duration = 400,
-  closeOnOverlayClick = true,
+  duration = 300,
   title,
 }) => {
+  const [modal, setModal] = useState<HTMLDivElement | null>(null);
+
   useLayoutEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -34,31 +43,29 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
     };
   }, [open]);
 
-  return (
-    <div className={s.overlay}>
-      <div className={clsx(s.modal, className)}>
+  useClickOutside(modal, onClose, "mousedown");
 
-      </div>
-    </div>
-    <ReactModal
-      isOpen={open}
-      shouldCloseOnOverlayClick={closeOnOverlayClick}
-      closeTimeoutMS={duration}
-      overlayClassName={s.overlay}
-      onRequestClose={onClose}
-      className={}
-      ariaHideApp={false}
-      style={{ overlay: { transitionDuration: `${duration}ms` } }}
+  return (
+    <CSSTransition
+      in={open}
+      unmountOnExit
+      mountOnEnter
+      timeout={duration}
+      classNames={TRANSITION_CLASSNAMES}
     >
-      <div className={s.wrapper}>
-        {!!title && (
-          <Typography variant="title" className={s.title}>
-            {title}
-          </Typography>
-        )}
-        {children}
+      <div className={s.overlay} style={{ transitionDuration: `${duration}ms` }}>
+        <div className={clsx(s.modal, className)} ref={setModal}>
+          <div className={s.wrapper}>
+            {!!title && (
+              <Typography variant="title" className={s.title}>
+                {title}
+              </Typography>
+            )}
+            {children}
+          </div>
+        </div>
       </div>
-    </ReactModal>
+    </CSSTransition>
   );
 };
 

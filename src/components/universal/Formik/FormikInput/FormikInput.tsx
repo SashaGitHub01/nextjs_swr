@@ -9,7 +9,14 @@ interface FormikInputProps extends InputProps {
 const FormikInput: React.FC<PropsWithChildren<FormikInputProps>> = ({ ...props }) => {
   const [field, meta] = useField(props.name);
 
-  return <Input {...props} {...field} error={!!(meta.touched && meta.error)} />;
+  return (
+    <Input
+      {...props}
+      {...field}
+      helperText={!!meta.touched && meta.error}
+      error={!!(meta.touched && meta.error)}
+    />
+  );
 };
 
 export default FormikInput;

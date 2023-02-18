@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { ILoginDto } from "@src/types/dtos/Login.dto";
 import FormikInput from "@src/components/universal/Formik/FormikInput/FormikInput";
 import { MailIcon, PassIcon } from "@src/assets/icons";
+import { MESSAGES } from "@src/constants/messages";
 import s from "./LoginForm.module.scss";
 
 const LoginForm: React.FC = () => {
@@ -15,8 +16,8 @@ const LoginForm: React.FC = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email().required(),
-    password: Yup.string().min(1).trim().required(),
+    email: Yup.string().email(MESSAGES.email).required(MESSAGES.required),
+    password: Yup.string().min(3, MESSAGES.minLength(3)).trim().required(MESSAGES.required),
   });
 
   const onSubmit = (values: ILoginDto) => {
@@ -29,7 +30,12 @@ const LoginForm: React.FC = () => {
         return (
           <form className={s.col} onSubmit={handleSubmit}>
             <FormikInput iconStart={<MailIcon />} placeholder="E-mail" name="email" type="email" />
-            <FormikInput iconStart={<PassIcon />} placeholder="Пароль" name="password" type="password" />
+            <FormikInput
+              iconStart={<PassIcon />}
+              placeholder="Пароль"
+              name="password"
+              type="password"
+            />
             <Button type="submit" disabled={!dirty}>
               Войти
             </Button>

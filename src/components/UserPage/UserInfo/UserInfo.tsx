@@ -14,7 +14,7 @@ interface UserInfoProps {
 
 const UserInfo: React.FC<PropsWithChildren<UserInfoProps>> = React.memo(({ handleOpen }) => {
   return (
-    <div className={s.wrapper}>
+    <div className={s.user}>
       <CoverImage url="https://static-cse.canva.com/blob/572026/removingbackgroundimages_Unsplash.jpeg" />
       <Container>
         <Avatar editable className={s.avatar} name="Namer" variant="big" />

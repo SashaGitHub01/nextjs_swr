@@ -20,10 +20,12 @@ const User: React.FC<PropsWithChildren<UserProps>> = () => {
 
   return (
     <Layout>
-      <Modal title="Редактировать профиль" onClose={handleClose} open={isOpen}>
-        <EditForm />
-      </Modal>
-      <UserInfo handleOpen={handleOpen} />
+      <div className={s.wrapper}>
+        <Modal title="Редактировать профиль" onClose={handleClose} open={isOpen}>
+          <EditForm handleClose={handleClose} />
+        </Modal>
+        <UserInfo handleOpen={handleOpen} />
+      </div>
     </Layout>
   );
 };

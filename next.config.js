@@ -15,6 +15,7 @@ const nextConfig = {
       use: ["@svgr/webpack"],
     });
 
+    // autoimport variables & mixins
     config.module.rules.push({
       test: /\.module\.s(a|c)ss$/,
       loader: "sass-loader",

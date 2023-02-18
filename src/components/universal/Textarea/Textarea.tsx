@@ -7,6 +7,7 @@ import s from "./Textarea.module.scss";
 export interface TextareaProps extends TextareaAutosizeProps {
   label?: string;
   error?: boolean;
+  helperText?: React.ReactNode;
 }
 
 const Textarea: React.FC<PropsWithChildren<TextareaProps>> = ({
@@ -18,6 +19,7 @@ const Textarea: React.FC<PropsWithChildren<TextareaProps>> = ({
   className,
   label,
   error,
+  helperText,
   ...props
 }) => {
   return (
@@ -36,6 +38,11 @@ const Textarea: React.FC<PropsWithChildren<TextareaProps>> = ({
         name={name}
         {...props}
       />
+      {!!helperText && (
+        <Typography variant="p2" className={s.helper}>
+          {helperText}
+        </Typography>
+      )}
     </div>
   );
 };

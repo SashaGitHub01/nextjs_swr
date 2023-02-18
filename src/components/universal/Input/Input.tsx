@@ -11,7 +11,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   iconEnd?: React.ReactNode;
   error?: boolean;
   label?: React.ReactNode;
-  startText?: string;
+  startText?: React.ReactNode;
+  helperText?: React.ReactNode;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -25,6 +26,7 @@ const Input: React.FC<InputProps> = ({
   type,
   label,
   startText,
+  helperText,
   ...props
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,6 +77,11 @@ const Input: React.FC<InputProps> = ({
           )}
         </div>
       </div>
+      {!!helperText && (
+        <Typography variant="p2" className={s.helper}>
+          {helperText}
+        </Typography>
+      )}
     </div>
   );
 };

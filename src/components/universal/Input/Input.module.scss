@@ -4,9 +4,14 @@
     padding-bottom: 5px;
   }
 
+  .helper {
+    color: $red;
+  }
+
   .input {
     display: flex;
     align-items: stretch;
+    height: 50px;
     @include field;
 
     .field_cont {
@@ -16,6 +21,8 @@
 
       .field {
         width: 100%;
+        display: block;
+        @include typo($text_primary, 400, 16px, 160%);
 
         &::placeholder {
           color: $gray3;
