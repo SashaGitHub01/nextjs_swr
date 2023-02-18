@@ -17,7 +17,7 @@ import s from "./EditForm.module.scss";
 
 interface EditFormProps {
   handleClose: () => void;
-  updateProfile: () => Promise<IUser | undefined>;
+  updateProfile: (user: IUpdateProfileDto) => Promise<IUser | undefined>;
 }
 
 const EditForm: React.FC<PropsWithChildren<EditFormProps>> = ({ handleClose, updateProfile }) => {
@@ -38,14 +38,29 @@ const EditForm: React.FC<PropsWithChildren<EditFormProps>> = ({ handleClose, upd
   const onSubmit = async (values: IUpdateProfileDto) => {
     try {
       const key = LocalStorageHelper.getApiKey();
-      console.log(values);
       if (key) {
         const res = await ProfileApi.updateProfile(values, key);
-        await updateProfile();
+        await updateProfile(res);
         mutateAuth(res, { revalidate: false });
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      // PATCH Method not allowed, make local user update
+      updateProfile(values);
+      mutateAuth(
+        (prev) => {
+          const newUser: IUser = {
+            ...prev!,
+            name: values.name ?? prev?.name,
+            description: values.description ?? prev?.description,
+            slug: values.slug ?? prev?.slug,
+          };
+
+          return newUser;
+        },
+        { revalidate: false },
+      );
     }
   };
 

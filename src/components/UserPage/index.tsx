@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { KEYS } from "@src/constants/keys";
 import { UserApi } from "@src/API/UserApi";
+import { IUpdateProfileDto } from "@src/types/dtos/UpdateProfile.dto";
 import Layout from "../Layout/Layout";
 import s from "./UserPage.module.scss";
 import UserInfo from "./UserInfo/UserInfo";
@@ -28,10 +29,25 @@ const User: React.FC<PropsWithChildren<UserProps>> = ({ user }) => {
     { fallbackData: user },
   );
 
-  const updateProfile = useCallback(async () => {
-    const mutationRes = await mutate();
-    return mutationRes;
-  }, [router.query?.slug]);
+  const updateProfile = useCallback(
+    async (profileDto: IUpdateProfileDto) => {
+      const mutationRes = await mutate(
+        (prev) => {
+          const newUser: IUser = {
+            ...prev!,
+            name: profileDto.name ?? prev?.name,
+            description: profileDto.description ?? prev?.description,
+            slug: profileDto.slug ?? prev?.slug,
+          };
+
+          return newUser;
+        },
+        { revalidate: false },
+      );
+      return mutationRes;
+    },
+    [router.query?.slug],
+  );
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
