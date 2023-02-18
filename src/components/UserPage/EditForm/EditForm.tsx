@@ -7,17 +7,26 @@ import * as Yup from "yup";
 import { MESSAGES } from "@src/constants/messages";
 import ModalBody from "@src/components/universal/Modal/ModalBody/ModalBody";
 import ModalFooter from "@src/components/universal/Modal/ModalFooter/ModalFooter";
+import { IUser } from "@src/types/User";
+import { useGetAuthUser } from "@src/hooks/swr/useGetAuthUser";
+import { IUpdateProfileDto } from "@src/types/dtos/UpdateProfile.dto";
+import Spinner from "@src/components/universal/Spinner/Spinner";
+import { ProfileApi } from "@src/API/ProfileApi";
+import { LocalStorageHelper } from "@src/utils/LocalStorageHelper";
 import s from "./EditForm.module.scss";
 
 interface EditFormProps {
   handleClose: () => void;
+  updateProfile: () => Promise<IUser | undefined>;
 }
 
-const EditForm: React.FC<PropsWithChildren<EditFormProps>> = ({ handleClose }) => {
+const EditForm: React.FC<PropsWithChildren<EditFormProps>> = ({ handleClose, updateProfile }) => {
+  const { mutate: mutateAuth, data } = useGetAuthUser();
+
   const initialValues = {
-    name: "",
-    slug: "",
-    description: "",
+    name: data?.name || "",
+    slug: data?.slug || "",
+    description: data?.description || "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -26,15 +35,27 @@ const EditForm: React.FC<PropsWithChildren<EditFormProps>> = ({ handleClose }) =
     description: Yup.string().trim().min(1, MESSAGES.minLength(1)),
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async (values: IUpdateProfileDto) => {
+    try {
+      const key = LocalStorageHelper.getApiKey();
+      console.log(values);
+      if (key) {
+        const res = await ProfileApi.updateProfile(values, key);
+        await updateProfile();
+        mutateAuth(res, { revalidate: false });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Formik validationSchema={validationSchema} initialValues={initialValues} onSubmit={onSubmit}>
-      {({ handleSubmit, dirty }) => {
+      {({ handleSubmit, dirty, isSubmitting }) => {
         return (
           <>
             <ModalBody>
-              <form onSubmit={handleSubmit} className={s.form}>
+              <form onSubmit={handleSubmit} id="edit-form" className={s.form}>
                 <div className={s.fields_col}>
                   <FormikInput label="Имя" name="name" />
                   <FormikInput startText="example.com/" label="Адрес профиля" name="slug" />
@@ -50,7 +71,13 @@ const EditForm: React.FC<PropsWithChildren<EditFormProps>> = ({ handleClose }) =
                   </Button>
                 </div>
                 <div>
-                  <Button disabled={!dirty} type="submit" variant="primary">
+                  <Button
+                    iconStart={!!isSubmitting && <Spinner size="small" />}
+                    disabled={!dirty || isSubmitting}
+                    type="submit"
+                    variant="primary"
+                    form="edit-form"
+                  >
                     Сохранить
                   </Button>
                 </div>

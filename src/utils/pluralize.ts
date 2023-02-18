@@ -2,7 +2,6 @@
 /* eslint-disable no-plusplus */
 
 function parse(str: string, num: number) {
-  console.log({ arguments });
   const args = [].slice.call(arguments, 1);
   let i = 0;
 

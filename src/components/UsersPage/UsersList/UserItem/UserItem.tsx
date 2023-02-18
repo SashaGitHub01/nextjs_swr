@@ -8,23 +8,18 @@ import s from "./UserItem.module.scss";
 
 interface UserItemProps extends IUser {}
 
-const UserItem: React.FC<PropsWithChildren<UserItemProps>> = ({
-  name,
-  email,
-  slug,
-  image,
-}) => {
+const UserItem: React.FC<PropsWithChildren<UserItemProps>> = ({ name, email, slug, image }) => {
   return (
     <div className={s.item} key={slug}>
       <Avatar name={name} src={image?.url} className={s.avatar} />
       <div className={s.row}>
-        <Link href={`/users${slug}`}>
+        <Link href={`/users/${slug}`}>
           <Typography className={s.name} variant="button_text">
             {name}
           </Typography>
         </Link>
         <Typography variant="p1" className={s.email}>
-          {'annadearmas1988@gmail.com'}
+          {email}
         </Typography>
       </div>
     </div>

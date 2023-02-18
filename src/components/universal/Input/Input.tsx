@@ -69,7 +69,13 @@ const Input: React.FC<InputProps> = ({
         )}
         <div className={s.field_cont}>
           {!!iconStart && <div className={clsx(s.icon, s.icon_start)}>{iconStart}</div>}
-          <input type={currentType} className={s.field} {...props} />
+          <input
+            type={currentType}
+            className={s.field}
+            disabled={disabled}
+            value={value}
+            {...props}
+          />
           {!!currentIconEnd && (
             <div onClick={toggleVisibility} className={clsx(s.icon, s.icon_end)}>
               {currentIconEnd}

@@ -1,6 +1,15 @@
 import "@src/styles/globals.scss";
 import type { AppProps } from "next/app";
+import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <SWRConfig
+      value={{
+        revalidateOnFocus: false,
+      }}
+    >
+      <Component {...pageProps} />
+    </SWRConfig>
+  );
 }

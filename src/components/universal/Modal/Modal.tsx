@@ -1,6 +1,6 @@
 import { useClickOutside } from "@src/hooks/useClickOutside";
 import clsx from "clsx";
-import React, { PropsWithChildren, useLayoutEffect, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import Typography from "../Typography/Typography";
 import s from "./Modal.module.scss";
@@ -31,7 +31,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
 }) => {
   const [modal, setModal] = useState<HTMLDivElement | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
     } else {

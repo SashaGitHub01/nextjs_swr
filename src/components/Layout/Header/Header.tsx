@@ -5,17 +5,13 @@ import Typography from "@src/components/universal/Typography/Typography";
 import Button from "@src/components/universal/Button/Button";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useGetAuthUser } from "@src/hooks/swr/useGetAuthUser";
 import s from "./Header.module.scss";
+import UserBadge from "./UserBadge/UserBadge";
 
 interface HeaderProps {}
 
 const Header: React.FC<PropsWithChildren<HeaderProps>> = () => {
-  const router = useRouter();
-
-  const navToLogin = () => {
-    router.push("/login");
-  };
-
   return (
     <header className={s.header}>
       <div className={s.row}>
@@ -29,13 +25,7 @@ const Header: React.FC<PropsWithChildren<HeaderProps>> = () => {
             сложные веб проекты
           </Typography>
         </div>
-        {true ? (
-          <Button onClick={navToLogin} variant="secondary">
-            Войти
-          </Button>
-        ) : (
-          <div className={s.user_info}></div>
-        )}
+        <UserBadge />
       </div>
     </header>
   );

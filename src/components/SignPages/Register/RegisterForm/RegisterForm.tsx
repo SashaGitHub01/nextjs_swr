@@ -6,9 +6,19 @@ import { IRegisterDto } from "@src/types/dtos/Register.dto";
 import * as Yup from "yup";
 import { MailIcon, PassIcon, UserIcon } from "@src/assets/icons";
 import { MESSAGES } from "@src/constants/messages";
+import Spinner from "@src/components/universal/Spinner/Spinner";
+import { AuthApi } from "@src/API/AuthApi";
+import { LocalStorageHelper } from "@src/utils/LocalStorageHelper";
+import { useSWRConfig } from "swr";
+import { KEYS } from "@src/constants/keys";
+import { useRouter } from "next/router";
+import { IUser } from "@src/types/User";
 import s from "./RegisterForm.module.scss";
 
 const RegisterForm: React.FC = () => {
+  const router = useRouter();
+  const { mutate } = useSWRConfig();
+
   const initialValues = {
     name: "",
     email: "",
@@ -21,13 +31,23 @@ const RegisterForm: React.FC = () => {
     password: Yup.string().min(3, MESSAGES.minLength(3)).trim().required(MESSAGES.required),
   });
 
-  const onSubmit = (values: IRegisterDto) => {
-    console.log(values);
+  const onSubmit = async (values: IRegisterDto) => {
+    try {
+      const res = await AuthApi.register(values);
+      LocalStorageHelper.setApiKey(res.value);
+      const auth = await mutate<IUser>(KEYS.auth);
+      router.push({
+        pathname: "/users/[slug]",
+        query: { slug: auth?.slug },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-      {({ handleSubmit, dirty }) => {
+      {({ handleSubmit, dirty, isSubmitting }) => {
         return (
           <form className={s.col} onSubmit={handleSubmit}>
             <FormikInput iconStart={<UserIcon />} name="name" placeholder="Имя" type="text" />
@@ -38,7 +58,11 @@ const RegisterForm: React.FC = () => {
               placeholder="Пароль"
               type="password"
             />
-            <Button type="submit" disabled={!dirty}>
+            <Button
+              iconStart={!!isSubmitting && <Spinner size="small" />}
+              type="submit"
+              disabled={!dirty || isSubmitting}
+            >
               Создать аккаунт
             </Button>
           </form>

@@ -8,7 +8,7 @@ interface FormikTextareaProps extends TextareaProps {
 
 const FormikTextarea: React.FC<PropsWithChildren<FormikTextareaProps>> = ({ ...props }) => {
   const [field, meta] = useField(props.name);
-  console.log(meta);
+
   return (
     <Textarea
       {...props}
