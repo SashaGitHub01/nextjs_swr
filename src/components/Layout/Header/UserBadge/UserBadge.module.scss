@@ -2,4 +2,14 @@
   display: flex;
   align-items: center;
   gap: 20px;
+
+  .name {
+    overflow: hidden;
+    max-width: 200px;
+    text-overflow: ellipsis;
+
+    @media screen and (max-width: $mobile_480) {
+      max-width: 110px;
+    }
+  }
 }

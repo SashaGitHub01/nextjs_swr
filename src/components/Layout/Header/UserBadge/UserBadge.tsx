@@ -24,7 +24,9 @@ const UserBadge: React.FC<PropsWithChildren<UserBadgeProps>> = () => {
   ) : (
     <div className={s.user_row}>
       <Link href={`/users/${data.slug}`}>
-        <Typography variant="p1">{data.name}</Typography>
+        <Typography className={s.name} variant="p1">
+          {data.name}
+        </Typography>
       </Link>
       <Avatar src={data.image?.url} name={data.name} variant="mini" />
     </div>

@@ -15,6 +15,7 @@
       gap: 20px;
 
       .logo {
+        flex-shrink: 0;
         cursor: pointer;
       }
     }
