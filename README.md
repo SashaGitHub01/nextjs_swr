@@ -1,6 +1,6 @@
 # Test
 
-**Vercel:** https://nextjs-swr-95an.vercel.app/users;
+**Vercel:** https://nextjs-swr-95an.vercel.app;
 
 **Стек технологий:** Next.js, TypeScript, swr.  
  
